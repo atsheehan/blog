@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <%= stylesheet_link_tag "style" %>
+    <title><%= current_page.data.title || "foobarium - a blog on software development" %></title>
+  </head>
+
+  <body>
+    <section id="heading">
+      <header>
+        <h1>foobarium # a blog on software development</h1>
+      </header>
+
+      <nav role="navigation">
+        <ul>
+          <li><%= link_to "Articles", "/" %></li>
+          <li><%= link_to "About", "/about.html" %></li>
+        </ul>
+      </nav>
+    </section>
+
+    <main role="main">
+      <%= yield %>
+    </main>
+  </body>
+</html>

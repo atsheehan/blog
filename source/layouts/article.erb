@@ -1,0 +1,15 @@
+<% wrap_layout :default do %>
+<article>
+  <header>
+    <h1><%= current_page.data.title %></h1>
+
+    <address class="author"><a rel="author" href="/about.html">Adam Sheehan</a></address>
+    <time datetime="<%= current_page.data.published_on %>"><%= format_date(current_page.data.published_on) %></time>
+  </header>
+
+  <section>
+  <%= yield %>
+  </section>
+</article>
+
+<% end %>
