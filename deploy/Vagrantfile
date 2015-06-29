@@ -1,0 +1,10 @@
+Vagrant.configure(2) do |config|
+  # Reference: https://docs.vagrantup.com
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  config.vm.provision "file", source: "build/site.tar.gz", destination: "/tmp/site.tar.gz"
+  config.vm.provision "file", source: "deploy/foobarium.nginx.conf", destination: "/tmp/foobarium.nginx.conf"
+  config.vm.provision "shell", path: "deploy/setup.sh"
+end

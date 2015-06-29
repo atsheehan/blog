@@ -12,6 +12,7 @@ end
 
 set :css_dir, "css"
 set :images_dir, "images"
+set :build_dir, "build/foobarium"
 
 configure :build do
   activate :minify_css
