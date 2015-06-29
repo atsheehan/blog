@@ -12,6 +12,16 @@ task :build do
   system("tar", "zcf", archive_filename, "-C", build_dir, "foobarium")
 end
 
+namespace :packer do
+  desc "Builds and registers an AMI containing the blog."
+  task :build_ami do
+    packerfile = File.join(base_dir, "deploy", "packer.json")
+    vars_file = File.join(base_dir, "deploy", "packer_vars.json")
+
+    system("packer", "build", "--var-file", vars_file, packerfile)
+  end
+end
+
 namespace :vagrant do
   vagrantfile = File.join(base_dir, "deploy", "Vagrantfile")
   env = { "VAGRANT_VAGRANTFILE" => vagrantfile }
