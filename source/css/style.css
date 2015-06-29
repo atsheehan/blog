@@ -191,6 +191,7 @@ table {
 body {
   max-width: 50em;
   margin: 0 auto;
+  padding: 0 1em;
 }
 
 nav ul {
