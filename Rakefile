@@ -27,7 +27,7 @@ namespace :vagrant do
   env = { "VAGRANT_VAGRANTFILE" => vagrantfile }
 
   desc "Stage the blog on a virtual machine."
-  task :provision  do
+  task provision: :build  do
     system(env, "vagrant up")
     system(env, "vagrant provision")
   end
