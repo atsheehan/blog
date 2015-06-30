@@ -14,7 +14,7 @@ end
 
 namespace :packer do
   desc "Builds and registers an AMI containing the blog."
-  task :build_ami do
+  task build_ami: :build do
     packerfile = File.join(base_dir, "deploy", "packer.json")
     vars_file = File.join(base_dir, "deploy", "packer_vars.json")
 
