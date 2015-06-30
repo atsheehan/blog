@@ -203,6 +203,10 @@ nav ul li {
   padding: 0 1em;
 }
 
+address {
+  font-style: normal;
+}
+
 #heading {
   border-bottom: 4px double #ccc;
 }
