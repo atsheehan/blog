@@ -1,0 +1,97 @@
+---
+layout: "article"
+title: "Part-Time Master's in Computer Science"
+published_on: "2015-06-30"
+---
+
+<p>I recently completed a Master's in Computer Science program from Northeastern University. It was a part-time program: I would take one class per semester at night. The requirements to graduate were 32 credits (or 8 classes) without a thesis.</p>
+
+<p>The purpose of this article is to describe the material I learned from the program and to consider the costs and benefits of the experience.</p>
+
+<h2>Motivation</h2>
+
+<p>The primary reason I wanted to study Computer Science was that I was a primarily self-taught developer, learning most of what I knew from books and online resources. I didn't know what I didn't know, and although I felt competent as a programmer, I was curious about the other parts of the field that I had no exposure to.</p>
+
+<p>Already having a Bachelor's degree in another field, I figured I would attempt a Master's in Computer Science, hoping my coding skills would be enough to get me by.</p>
+
+<h2>Broad, not deep</h2>
+
+<p>My goal for this program was to get exposure to some of the different areas of Computer Science to see how much I was missing out on. While each of the classes went into sufficient depth on the given topic, it served mostly as an introduction to the area. Below is the list of courses I completed, in order.</p>
+
+<ul>
+  <li>
+    <h3>Computer Systems</h3>
+
+    <p>Discussed how operating systems work. The assignments in this course revolved around <a href="http://web.stanford.edu/class/cs140/projects/pintos/pintos_1.html">Pintos</a>, a basic operating system that has a test suite but no implementation for various features. The takeaways from this course was learning about locking primitives and how to write multithreaded programs, system calls as the interface between an operating system and applications, and how virtual memory works to isolate processes from each other.</p>
+  </li>
+
+  <li>
+    <h3>Fundamentals of Networking</h3>
+
+    <p>Discussed how computers can talk over a network and some of the common protocols in use. This course was one of the most relevant ones for me as a web developer since it de-mystified a lot of what was happening when visiting a web site. Knowing how computers communicate made it a lot easier to reason about how to structure a web application, what information should be sent to the client or exist only on the server, and whether I'm leaking too much information or exposing myself to attacks.</p>
+
+    <p>This course had three programming projects, the last of which involved building a greedy BitTorrent client that competed against other students' clients in a simulated environment to see who could download the fastest while minimizing the amount uploaded.</p>
+  </li>
+
+  <li>
+    <h3>Algorithms</h3>
+
+    <p>This course focused on graph data structures and the algorithms that apply to them, greedy algorithms, network flow algorithms, dynamic programming, and NP problems. Not having taken an algorithms course before, I was a bit worried that it would assume a large base knowledge from undergraduate coursework but that was not the case. There was no programming involved in this course and the focus was primarily on writing proofs, but the material was nonetheless very interesting. I can't stop seeing every problem as a graph problem of some type now.</p>
+  </li>
+
+  <li>
+    <h3>Programming Design Paradigms</h3>
+
+    <p>The focus on this course was how to tackle a programming problem by following a systematic recipe. Everything was written in Racket, a Lisp-like language. It was also my first introduction to functional programming.</p>
+
+    <p>At first this course was immensely frustrating since it seemed like we were taking baby steps in designing really simple programs. It picked up once we started writing higher-order functions and I started to see the benefit of the functional approach. After the course I noticed I tended to use more immutable data structures and started thinking about problems as a series of transformations on data in my work.</p>
+  </li>
+
+  <li>
+    <h3>Machine Learning</h3>
+
+    <p>This was the first course where I felt like I could have used more training in math prior to enrolling (especially linear algebra). This course covered a variety of techniques used in machine learning as well as a lot of the math behind them. The programming problems could be written in whatever language but Matlab (or GNU Octave) were the recommended ones.</p>
+  </li>
+
+  <li>
+    <h3>Natural Language Processing</h3>
+
+    <p>Discussed some of the techniques for working with text. Learned how regular expressions work, how to parse and generate sentences using context-free grammars, and machine translation.</p>
+  </li>
+
+  <li>
+    <h3>Network Security</h3>
+
+    <p>This was the most interesting course I've taken. The lectures described a wide range of attacks, but it was the projects where I learned the most. Most of the projects involved attacking a vulnerable web-app (hosted by the professor) to gain shell access and steal some secret key.</p>
+
+    <p>The projects were a lot of fun but also very stressful: you either found the secret or got a zero for that assignment. Nonetheless, I have a better understanding of how subtle cross-site scripting works or how buffer overflows can be exploited to run arbitrary code. This class (in addition to the intro to networking) might have been the most helpful to me as a web developer.</p>
+  </li>
+
+  <li>
+    <h3>Information Retrieval</h3>
+
+    <p>The focus of this class was on how to find relevant documents from a collection given some query. The projects involved investigating different methods of scoring documents for relevance to a query, building a custom inverted index for storing documents with fast lookup by term, and crawling the web to build a (limited) search engine. It involved using Elasticsearch for several of the projects.</p>
+  </li>
+</ul>
+
+<p>Some of the courses listed were extremely relevant to my day-to-day work, including the networking and security courses. While I found machine learning and natural language processing very interesting, I'm having a hard time finding a job where I can put them to use. It's useful to know what techniques exist, but without Ph.D level training there doesn't seem to be many opportunities.</p>
+
+<h2>Software Development & Computer Science</h2>
+
+<p>Throughout the program, there was very little emphasis on best practices in software development or on code review (aside from the course on functional programming). The skills I developed on the job were orthogonal to those that I learned at school, although knowing how to program and write good code went a long way to making some assignments more feasible. Most assignments were not graded on code quality, but given some input, verify it produces the correct output.</p>
+
+<p>One interesting thing I noticed was that there was almost no overlap between the students in my classes and the colleagues I worked with. I understand that once you've found a job that there isn't a pressing need to pursue further education, but there was some benefit from taking these courses. Although at this point I'm uncertain whether the benefit outweighs the cost.</p>
+
+<h2>Value</h2>
+
+<p>Each class cost over $5,000. Trying to avoid loans, this is a steep price to pay out of pocket. Having a full-time software development job also exempted me from any tax breaks from paying tuition.</p>
+
+<p>All of the classes were interesting, but only a few were directly relevant to me as a web developer. Overall I feel more confident in my ability to reason about problems now that I have a better understanding of how certain things work, but I don't know if that justifies the cost of the program.</p>
+
+<p>Most of the information that I learned is available for free through online resources and MOOCs (especially since they tend to be Computer Science-oriented). The primary differences between a class at Northeastern and a MOOC are the cost of failing and the complexity of the assignments. I'll do whatever it takes to pass a course to avoid having to pay another $5000, but if there is no (or a minimal) cost to enrolling in a MOOC, it's easy to let it slide when other priorities appear.</p>
+
+<p>I enrolled and completed about 50% of the Machine Learning course hosted on Coursera prior to taking a Machine Learning course at Northeastern University. While the MOOC introduced the key concepts and gave me a general understanding of what was going on, the homework assignments were fairly simple and involved filling in the blanks on a mostly-completed programming problem. The Machine Learning course at Northeastern had much more challenging problems, open-ended questions, and a rigorous amount of math involved. While the Northeastern course required significantly more effort, I haven't revisited that material in several years and most of the knowledge has faded. I still retain the general concepts but would need some practice to implement them successfully.</p>
+
+<p>It is still too early to tell how much this degree will affect my career. It gave me more confidence when approaching software-related problems and exposure to new areas, but I'll probably still be applying to the same jobs as if I didn't have a degree (and I don't think it will bump up my salary much if at all).</p>
+
+<p>I don't know if I could recommend the program considering the steep cost. The professors were great and the courses were interesting, but $5000 per class was excessive. Northeastern has a massive campus in Boston with lots of amenities that I wasn't really interested in. If there was a discounted option for an in-person course without access to other features of the university, that might be more appealing.</p>
