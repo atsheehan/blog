@@ -210,3 +210,7 @@ address {
 #heading {
   border-bottom: 4px double #ccc;
 }
+
+.articles li {
+  list-style-type: none;
+}

@@ -4,8 +4,11 @@ layout: "default"
 
 <h1>Articles</h1>
 
-<ul>
+<ul class="articles">
   <% articles.each do |article| %>
-  <li><%= link_to article.data.title, article.path %></li>
+    <li>
+      <time datetime="<%= article.data.published_on %>"><%= format_date(article.data.published_on) %></time>:
+      <%= link_to article.data.title, article.path %>
+    </li>
   <% end %>
 </ul>
