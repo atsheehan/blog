@@ -13,6 +13,8 @@ end
 set :css_dir, "css"
 set :images_dir, "images"
 set :build_dir, "build/foobarium"
+set :markdown_engine, :redcarpet
+set :markdown, fenced_code_blocks: true, smartypants: true
 
 configure :build do
   activate :minify_css

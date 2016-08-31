@@ -10,3 +10,6 @@ gem "middleman-livereload", "~> 3.4"
 
 # Task runner
 gem "rake", "~> 11.2"
+
+# Markdown parser
+gem "redcarpet", "~> 3.3"
