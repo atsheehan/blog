@@ -99,7 +99,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (10.5.0)
+    rake (11.2.2)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
@@ -119,9 +119,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  middleman
-  middleman-livereload
-  rake
+  middleman (~> 4.1)
+  middleman-livereload (~> 3.4)
+  rake (~> 11.2)
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
