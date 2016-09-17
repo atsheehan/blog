@@ -13,3 +13,6 @@ gem "rake", "~> 11.2"
 
 # Markdown parser
 gem "redcarpet", "~> 3.3"
+
+# Debugger
+gem "pry", "~> 0.10"
