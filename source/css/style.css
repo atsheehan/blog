@@ -192,6 +192,8 @@ body {
   max-width: 50em;
   margin: 0 auto;
   padding: 0 1em;
+  font-size: 1.2em;
+  line-height: 1.4em;
 }
 
 nav ul {
@@ -209,4 +211,34 @@ address {
 
 #heading {
   border-bottom: 4px double #ccc;
+}
+
+code, samp {
+  font-size: 0.85em;
+  padding: 0 7px;
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+}
+
+pre code, pre samp {
+  display: block;
+  padding: 7px;
+}
+
+.code-sample pre {
+  margin: 0;
+}
+
+.code-sample figcaption {
+  display: block;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-top: 0;
+  padding: 8px;
+}
+
+aside {
+  padding: 8px;
+  background-color: #b34cff;
+  border: 1px solid #ccc;
 }
