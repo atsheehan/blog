@@ -30,7 +30,7 @@ audio:not([controls]) {
 }
 
 html {
-  font-family: Baskerville, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: "Times New Roman", serif;
   -webkit-text-size-adjust: 100%; /* 2 */
   -ms-text-size-adjust: 100%; /* 2 */
 }
