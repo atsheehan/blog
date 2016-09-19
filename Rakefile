@@ -11,9 +11,10 @@ end
 desc "Generate the static site."
 task :build do
   build_dir = File.join(base_dir, "build")
-  build_tag = "blog:#{timestamp}"
+  build_tag = timestamp
 
   system("rm", "-rf", build_dir)
   system({ "MM_ROOT" => base_dir }, "bundle", "exec", "middleman", "build")
-  system("docker", "build", "-t", build_tag, base_dir)
+  system("docker", "build", "-t", "blog", base_dir)
+  system("docker", "tag", "blog:latest", "blog:#{build_tag}")
 end
