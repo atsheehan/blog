@@ -37,6 +37,8 @@ helpers do
   end
 end
 
+activate :gzip
+
 set :css_dir, "css"
 set :images_dir, "images"
 set :markdown_engine, :redcarpet
