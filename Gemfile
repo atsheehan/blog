@@ -16,3 +16,9 @@ gem "redcarpet", "~> 3.3"
 
 # Debugger
 gem "pry", "~> 0.10"
+
+# SDK for deploying to AWS
+gem "aws-sdk", "~> 2.6"
+
+# Load sensitive envvars from the .env file
+gem "dotenv", "~> 2.1"

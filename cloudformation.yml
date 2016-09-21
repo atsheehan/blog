@@ -1,0 +1,162 @@
+Parameters:
+  VPC:
+    Type: "AWS::EC2::VPC::Id"
+  Subnets:
+    Type: "List<AWS::EC2::Subnet::Id>"
+  DomainName:
+    Type: "String"
+  KeypairName:
+    Type: "AWS::EC2::KeyPair::KeyName"
+  ContainerImage:
+    Type: "String"
+  InstanceType:
+    Type: "String"
+    Default: "t2.micro"
+  ContainerInstanceAMI:
+    Type: "AWS::EC2::Image::Id"
+    Default: "ami-3d55272a"
+
+Resources:
+  ECSCluster:
+    Type: "AWS::ECS::Cluster"
+
+  ContainerInstanceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service: "ec2.amazonaws.com"
+            Action: "sts:AssumeRole"
+
+  ContainerInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties:
+      Path: "/"
+      Roles:
+        - !Ref "ContainerInstanceRole"
+
+  AppBalancerSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "Allow HTTP traffic"
+      VpcId: !Ref "VPC"
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: "80"
+          ToPort: "80"
+          CidrIp: "0.0.0.0/0"
+
+  ContainerInstanceSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "Allow container traffic to ephemeral port range"
+      VpcId: !Ref "VPC"
+      SecurityGroupIngress:
+        - IpProtocol: "tcp"
+          FromPort: "32768"
+          ToPort: "65535"
+          SourceSecurityGroupId:
+            Ref: "AppBalancerSecurityGroup"
+
+  ECSLaunchConfig:
+    Type: "AWS::AutoScaling::LaunchConfiguration"
+    Properties:
+      IamInstanceProfile: !Ref "ContainerInstanceProfile"
+      ImageId: !Ref "ContainerInstanceAMI"
+      InstanceType: !Ref "InstanceType"
+      KeyName: !Ref "KeypairName"
+      SecurityGroups:
+        - !Ref "ContainerInstanceSecurityGroup"
+      UserData:
+        "Fn::Base64":
+          !Sub "#!/bin/bash\necho ECS_CLUSTER=${ECSCluster} >> /etc/ecs/ecs.config"
+
+  ECSAutoScalingGroup:
+    Type: "AWS::AutoScaling::AutoScalingGroup"
+    Properties:
+      VPCZoneIdentifier: !Ref "Subnets"
+      LaunchConfigurationName: !Ref "ECSLaunchConfig"
+      MaxSize: 1
+      MinSize: 1
+
+  ContainerLoadBalancer:
+    Type: "AWS::ElasticLoadBalancingV2::LoadBalancer"
+    Properties:
+      SecurityGroups:
+        - !Ref "AppBalancerSecurityGroup"
+      Subnets: !Ref "Subnets"
+
+  BlogTaskDefinition:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      ContainerDefinitions:
+        - Image: !Ref "ContainerImage"
+          Memory: 128
+          Name: "blog"
+          PortMappings:
+            - ContainerPort: 80
+      Volumes: []
+
+  ServiceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service: "ecs.amazonaws.com"
+            Action: "sts:AssumeRole"
+
+  BlogTargetGroup:
+    Type: "AWS::ElasticLoadBalancingV2::TargetGroup"
+    Properties:
+      Port: 80
+      Protocol: "HTTP"
+      VpcId: !Ref "VPC"
+
+  BlogListener:
+    Type: "AWS::ElasticLoadBalancingV2::Listener"
+    Properties:
+      DefaultActions:
+        - TargetGroupArn: !Ref "BlogTargetGroup"
+          Type: "forward"
+      LoadBalancerArn: !Ref "ContainerLoadBalancer"
+      Port: 80
+      Protocol: "HTTP"
+
+  BlogService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: !Ref "ECSCluster"
+      DesiredCount: 1
+      LoadBalancers:
+        - ContainerName: "blog"
+          ContainerPort: 80
+          TargetGroupArn: !Ref "BlogTargetGroup"
+      Role: !Ref "ServiceRole"
+      TaskDefinition: !Ref "BlogTaskDefinition"
+
+  HostedZone:
+    Type: "AWS::Route53::HostedZone"
+    Properties:
+      Name: !Ref "DomainName"
+
+  BlogRecordSet:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt "ContainerLoadBalancer.DNSName"
+        HostedZoneId: !GetAtt "ContainerLoadBalancer.CanonicalHostedZoneID"
+      HostedZoneId: !Ref "HostedZone"
+      Name: !Ref "DomainName"
+      Type: "A"
