@@ -10,7 +10,7 @@ Amazon Web Services (AWS) offers an [overwhelming number of products](https://aw
 
 AWS often charges by usage rather than providing fixed fees. Each service has its own pricing model, and it's very easy to rack up a large bill if you're not paying attention to the costs of each resource. Even worse, if your AWS keys are compromised (e.g. accidentally pushed to GitHub), it's not uncommon for opportunistic Bitcoin miners to spin up a few hundred servers at your expense.
 
-There isn't a way to limit the amount you want to spend each month, but you can [create a billing alert](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) to monitor costs. The alert will email or text you once you're accumulated monthly costs hit some threshold. This way you're not caught off guard by whatever bill comes your way at the end of the month.
+There isn't a way to limit the amount you want to spend each month, but you can [create a billing alert](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/monitor-charges.html) to monitor costs. The alert will email or text you once your accumulated monthly costs hit some threshold. This way you're not caught off guard by whatever bill comes your way at the end of the month.
 
 Over time you'll get a sense of how much you spend each month, and you can setup alerts to ensure you're on the right trajectory. If you expect to spend $1,000/month, it might be helpful to setup a few billing alerts for $250/month, $500/month, and $750/month. You can expect the alerts to trigger at each week of the month, but if any of them trigger ahead of schedule then you have an early warning to investigate where the additional costs are coming from.
 
@@ -18,7 +18,7 @@ There is also the a new [Budgets feature](https://aws.amazon.com/blogs/aws/new-a
 
 ## Use Identity and Access Management to Create a Non-Root User (and Keep Your Access Keys to Yourself)
 
-[Amazon recommends](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) using the [Identity and Access Management (IAM)](https://console.aws.amazon.com/iam/home) service to set yourself up with a non-root user account. Even if you're the only user and you give yourself full Administrative access, there are still some benefits from using IAM rather than your root credentials.
+[Amazon recommends](http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) using the [Identity and Access Management (IAM)](https://console.aws.amazon.com/iam/home) service to set yourself up with a non-root user account. Even if you're the only user and you give yourself full Administrative access, there are still some benefits from using IAM rather than your root credentials. AWS has several guides on how [to get started with IAM](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html).
 
 One thing to remember is that your IAM user account has its own set of credentials. The access keys that you generate are for your user only. If someone else needs access to an AWS resource, you can create them their own user account with the appropriate permissions and they can use their own set of AWS keys. If you have an application running on an EC2 instance that needs to access some other AWS resource (e.g. a web application that needs to upload to S3), you can create a [**role**](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_services.html) for that EC2 instance that gives it access to other resources without having to use your keys.
 
