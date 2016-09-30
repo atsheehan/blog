@@ -197,12 +197,16 @@ body {
 }
 
 nav ul {
-  padding: 0 1em;
+  padding: 0;
 }
 
 nav ul li {
   display: inline;
   padding: 0 1em;
+}
+
+nav ul li:first-of-type {
+  padding: 0;
 }
 
 address {
