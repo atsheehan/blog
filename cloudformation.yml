@@ -92,6 +92,11 @@ Resources:
         - !Ref "AppBalancerSecurityGroup"
       Subnets: !Ref "Subnets"
 
+  BlogLogGroup:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      RetentionInDays: 365
+
   BlogTaskDefinition:
     Type: "AWS::ECS::TaskDefinition"
     Properties:
@@ -101,6 +106,11 @@ Resources:
           Name: "blog"
           PortMappings:
             - ContainerPort: 80
+          LogConfiguration:
+            LogDriver: "awslogs"
+            Options:
+              "awslogs-group": !Ref "BlogLogGroup"
+              "awslogs-region": "us-east-1"
       Volumes: []
 
   ServiceRole:
