@@ -95,6 +95,7 @@ Resources:
   BlogLogGroup:
     Type: "AWS::Logs::LogGroup"
     Properties:
+      LogGroupName: "blog"
       RetentionInDays: 365
 
   BlogTaskDefinition:
