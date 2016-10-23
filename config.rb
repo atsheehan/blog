@@ -35,6 +35,12 @@ helpers do
   def articles
     sitemap.resources.select { |res| res.path.start_with?("article") }
   end
+
+  def recent_articles
+    articles.sort_by do |article|
+      article.data.published_on
+    end.reverse
+  end
 end
 
 activate :gzip
