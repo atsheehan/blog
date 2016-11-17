@@ -50,7 +50,7 @@ pre code, pre samp {
 }
 
 aside {
-  padding: 8px;
+  padding: 0 8px;
   background-color: #eaeafa;
   border: 1px solid #ccc;
 }
