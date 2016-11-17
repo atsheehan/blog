@@ -7,8 +7,11 @@ layout: "default"
 <ul class="articles">
   <% recent_articles.each do |article| %>
     <li>
-      <time datetime="<%= article.data.published_on %>"><%= format_date(article.data.published_on) %></time>:
-      <%= link_to article.data.title, article.path %>
+      <article>
+        <h2><%= link_to article.data.title, article.path %></h2>
+        <time datetime="<%= article.data.published_on %>"><%= format_date(article.data.published_on) %></time>
+        <p><%= article.data.description %></p>
+      </article>
     </li>
   <% end %>
 </ul>

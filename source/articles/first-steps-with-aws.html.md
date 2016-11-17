@@ -1,6 +1,7 @@
 ---
 layout: "article"
 title: "First Steps with Amazon Web Services"
+description: "Amazon Web Services (AWS) offers an overwhelming number of products to the uninitiated. When first getting started, it's difficult to differentiate the useful services from the more esoteric ones. Even if you're only interested in using EC2 or S3, there are a handful of other services worth exploring for monitoring and protecting your AWS account. This article describes a few of the services I've found helpful and tips for managing your AWS account."
 published_on: "2016-09-29"
 ---
 

@@ -54,3 +54,13 @@ aside {
   background-color: #eaeafa;
   border: 1px solid #ccc;
 }
+
+.articles {
+  list-style: none;
+  padding-left: 0;
+}
+
+.articles li {
+  padding-bottom: 0.5em;
+  margin: 0.5em 0;
+}
