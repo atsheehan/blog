@@ -34,6 +34,7 @@ code, samp {
 pre code, pre samp {
   display: block;
   padding: 7px;
+  overflow: auto;
 }
 
 .code-sample pre {
